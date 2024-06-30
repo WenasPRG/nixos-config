@@ -32,11 +32,9 @@
 
   environment.systemPackages = with pkgs; [
     vlc
-    gtk-engine-murrine
     copyq
     normcap
     rsync
-    rofi
     bluez
     blueman
     bluez-tools
@@ -44,7 +42,6 @@
     fastfetch
     whatsapp-for-linux
     git
-    gnome.gnome-software
     ventoy  
     mangal
     calibre
@@ -75,6 +72,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.xyfr = { 
@@ -89,14 +87,13 @@
   }; 
 
   home-manager = {
-    specialArgs = { inherit inputs; }; 
     users = { 
       "xyfr" = import ./home.nix;
     };
   };
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 ];
@@ -108,5 +105,4 @@
   # system.copySystemConfiguration = true;
 
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }
