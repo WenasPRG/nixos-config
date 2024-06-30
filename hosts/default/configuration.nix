@@ -1,9 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.home-manager.nixosModules.default
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -31,6 +32,11 @@
 
   environment.systemPackages = with pkgs; [
     vlc
+    gtk-engine-murrine
+    copyq
+    normcap
+    rsync
+    rofi
     bluez
     blueman
     bluez-tools
@@ -61,15 +67,32 @@
   services.printing.enable = true;
 
   # Enable sound.
-  services.pipewire.enable = true;
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.xyfr = {
+  users.users.xyfr = { 
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      tree
-    ]; 
+    description = "xyfr"; 
+    extraGroups = [ "networkmanager" "wheel" ]; 
+    packages = with pkgs; [ 
+      vim 
+      neovim 
+      firefox
+    ];
+  }; 
+
+  home-manager = {
+    specialArgs = { inherit inputs; }; 
+    users = { 
+      "xyfr" = import ./home.nix;
+    };
   };
 
   # Enable the OpenSSH daemon.
