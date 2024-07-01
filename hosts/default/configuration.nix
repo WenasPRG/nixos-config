@@ -36,7 +36,9 @@
   services.xserver.desktopManager.cinnamon.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+ 
+  security.polkit.enable = true;
+ 
   environment.systemPackages = with pkgs; [
     efibootmgr
     tree
@@ -96,6 +98,7 @@
   }; 
 
   home-manager = {
+    extraSpecialArgs = { inherit inputs; };
     users = { 
       "xyfr" = import ./home.nix;
     };
@@ -107,11 +110,6 @@
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 ];
   networking.firewall.enable = true;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
 
   system.stateVersion = "24.05"; # Did you read the comment?
 }
