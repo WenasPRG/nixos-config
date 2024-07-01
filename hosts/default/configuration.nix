@@ -8,8 +8,15 @@
     ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = false;
+  boot.loader = {
+    grub = {
+      enable = true;
+      efiSupport = true;
+      device = "nodev";
+    };
+    efi.canTouchEfiVariables = true;
+  };
 
   networking.hostName = "xyfr-01"; # Define your hostname.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -31,6 +38,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   environment.systemPackages = with pkgs; [
+    efibootmgr
     tree
     vlc
     copyq
