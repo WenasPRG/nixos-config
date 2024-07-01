@@ -10,7 +10,7 @@
   ];
 
   home.file = {
-    # Add any dotfiles you need here
+    ".config/sway/config".source = ../../modules/home-manager/sway/config;
   };
 
   home.sessionVariables = {
