@@ -36,10 +36,12 @@
   services.xserver.desktopManager.cinnamon.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
- 
+
+  nixpkgs.config.allowUnfree = true; 
   security.polkit.enable = true;
  
   environment.systemPackages = with pkgs; [
+    discord
     efibootmgr
     tree
     vlc
@@ -47,12 +49,13 @@
     normcap
     rsync
     bluez
+    tor-browser
     blueman
     bluez-tools
-    yacreader
     fastfetch
     whatsapp-for-linux
     git
+    qbittorrent
     ventoy  
     mangal
     calibre
