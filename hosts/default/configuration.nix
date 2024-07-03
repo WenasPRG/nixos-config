@@ -8,7 +8,6 @@
     ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = false;
   boot.loader = {
     grub = {
       enable = true;
@@ -58,6 +57,8 @@
     whatsapp-for-linux
     git
     qbittorrent
+    reaper
+    gimp
     ventoy  
     mangal
     calibre
