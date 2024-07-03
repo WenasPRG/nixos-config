@@ -17,6 +17,19 @@
     efi.canTouchEfiVariables = true;
   };
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    
+    extraPackages = with pkgs; [
+      mesa
+      rocm-opencl-icd
+      amdvlk
+    ];
+  };
+
+  services.xserver.videoDrivers = ["amdgpu"];
+
   networking.hostName = "xyfr-01"; # Define your hostname.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
@@ -30,17 +43,14 @@
     keyMap = "de";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.desktopManager.cinnamon.enable = true;
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   security.polkit.enable = true;
 
-  nixpkgs.config.allowUnfree = true; 
- 
+  nixpkgs.config.allowUnfree = true;
+
   environment.systemPackages = with pkgs; [
+    davinci-resolve
     discord
     dbus
     efibootmgr
@@ -54,28 +64,50 @@
     blueman
     bluez-tools
     fastfetch
+    ffmpeg
     whatsapp-for-linux
     git
     qbittorrent
     reaper
     gimp
     ventoy  
+    yacreader
     mangal
     calibre
     wget
     curl
-    kate
     kitty
     firefox
     onlyoffice-bin_latest
     chromium
     neovim
+    ibus
     gparted
   ];
 
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-photos
+    gnome-tour
+  ]) ++ (with pkgs.gnome; [
+    gnome-music
+    gnome-terminal
+    epiphany # web browser
+    geary # email reader
+    evince # document viewer
+    totem # video player
+    tali # poker game
+    iagno # go game
+    hitori # sudoku game
+    atomix # puzzle game
+  ]);  
+
   # Configure keymap in X11
-  services.xserver.xkb.layout = "de";
-  services.xserver.xkb.options = "eurosign:e,caps:escape";
+  # services.xserver.xkb.layout = "de";
+  # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -118,4 +150,6 @@
   networking.firewall.enable = true;
 
   system.stateVersion = "24.05"; # Did you read the comment?
+
 }
+
