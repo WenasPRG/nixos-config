@@ -50,6 +50,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    bitwarden-desktop
     davinci-resolve
     discord
     dbus
@@ -76,6 +77,7 @@
     calibre
     wget
     curl
+    zoom-us
     kitty
     firefox
     onlyoffice-bin_latest
