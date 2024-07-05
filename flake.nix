@@ -3,6 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # dexed = {
+    #   url = "github:asb2m10/dexed";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     
     home-manager = {
       url = "github:nix-community/home-manager";

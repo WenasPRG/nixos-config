@@ -51,12 +51,19 @@
 
   environment.systemPackages = with pkgs; [
     bitwarden-desktop
+    reaper
+    corefonts
+    vistafonts
+    geogebra6
     davinci-resolve
     discord
     dbus
     efibootmgr
     tree
+    jq
+    linvstmanager
     vlc
+    OVMF
     copyq
     normcap
     rsync
@@ -65,11 +72,14 @@
     blueman
     bluez-tools
     fastfetch
+    qemu
+    virt-manager
+    quickemu
+    quickgui
     ffmpeg
     whatsapp-for-linux
     git
     qbittorrent
-    reaper
     gimp
     ventoy  
     yacreader
@@ -115,7 +125,6 @@
   services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -123,8 +132,10 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-  };
-
+  # If you want to use JACK applications, uncomment this
+    jack.enable = true;
+   };
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.xyfr = { 
     isNormalUser = true;
