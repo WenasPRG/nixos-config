@@ -28,6 +28,10 @@
     ];
   };
 
+
+  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.qemu.package = pkgs.qemu;
+
   services.xserver.videoDrivers = ["amdgpu"];
 
   networking.hostName = "xyfr-01"; # Define your hostname.
@@ -52,6 +56,9 @@
   environment.systemPackages = with pkgs; [
     bitwarden-desktop
     reaper
+    virt-manager
+    qemu
+    libvirt
     corefonts
     vistafonts
     geogebra6
@@ -63,7 +70,6 @@
     jq
     linvstmanager
     vlc
-    OVMF
     copyq
     normcap
     rsync
@@ -72,10 +78,6 @@
     blueman
     bluez-tools
     fastfetch
-    qemu
-    virt-manager
-    quickemu
-    quickgui
     ffmpeg
     whatsapp-for-linux
     git
@@ -140,7 +142,7 @@
   users.users.xyfr = { 
     isNormalUser = true;
     description = "xyfr"; 
-    extraGroups = [ "networkmanager" "wheel" ]; 
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ]; 
     packages = with pkgs; [ 
       vim 
       neovim 
