@@ -61,6 +61,7 @@
     libvirt
     corefonts
     vistafonts
+    alsa-utils
     geogebra6
     davinci-resolve
     discord
@@ -69,6 +70,8 @@
     tree
     jq
     linvstmanager
+    pavucontrol
+    swtpm
     vlc
     copyq
     normcap
