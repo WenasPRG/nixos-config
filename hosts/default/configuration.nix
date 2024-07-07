@@ -53,11 +53,16 @@
 
   nixpkgs.config.allowUnfree = true;
 
+
   environment.systemPackages = with pkgs; [
+    yabridge
+    yabridgectl
     bitwarden-desktop
+    ani-cli
     reaper
     virt-manager
     qemu
+    zip
     libvirt
     corefonts
     vistafonts
@@ -68,6 +73,8 @@
     dbus
     efibootmgr
     tree
+    wineWowPackages.unstableFull
+    wineWowPackages.stagingFull
     jq
     linvstmanager
     pavucontrol
