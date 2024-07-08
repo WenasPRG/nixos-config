@@ -28,7 +28,6 @@
     ];
   };
 
-
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.package = pkgs.qemu;
 
@@ -53,60 +52,74 @@
 
   nixpkgs.config.allowUnfree = true;
 
-
   environment.systemPackages = with pkgs; [
-    yabridge
-    yabridgectl
-    bitwarden-desktop
-    ani-cli
-    reaper
-    virt-manager
-    qemu
+    # General utilities
     zip
-    libvirt
-    corefonts
-    vistafonts
-    alsa-utils
+    rsync
+    tree
+    wget
+    curl
+    jq
+    ibus
+
+    # Media
+    vlc
+    ffmpeg
+    pavucontrol
     geogebra6
+    gimp
     davinci-resolve
+
+    # Communication
+    bitwarden-desktop
     discord
+    whatsapp-for-linux
+    tor-browser
+    zoom-us
+
+    # System tools
     dbus
     efibootmgr
-    tree
+    gparted
+    neovim
+    kitty
+    firefox
+    chromium
+
+    # Fonts
+    corefonts
+    vistafonts
+
+    # Virtualization
+    libvirt
+    virt-manager
+    qemu
+    swtpm
+
+    # Development
+    git
+    reaper
+    yabridge
+    yabridgectl
+    linvstmanager
+    alsa-utils
     wineWowPackages.unstableFull
     wineWowPackages.stagingFull
-    jq
-    linvstmanager
-    pavucontrol
-    swtpm
-    vlc
-    copyq
-    normcap
-    rsync
-    bluez
-    tor-browser
-    blueman
-    bluez-tools
+
+    # Miscellaneous
+    ani-cli
     fastfetch
-    ffmpeg
-    whatsapp-for-linux
-    git
-    qbittorrent
-    gimp
-    ventoy  
+    ventoy
     yacreader
     mangal
     calibre
-    wget
-    curl
-    zoom-us
-    kitty
-    firefox
     onlyoffice-bin_latest
-    chromium
-    neovim
-    ibus
-    gparted
+    blueman
+    bluez
+    bluez-tools
+    qbittorrent
+    copyq
+    normcap
   ];
 
   services.xserver.enable = true;
@@ -152,7 +165,7 @@
   users.users.xyfr = { 
     isNormalUser = true;
     description = "xyfr"; 
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ]; 
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "realtime" ]; 
     packages = with pkgs; [ 
       vim 
       neovim 
@@ -177,4 +190,3 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
 }
-
