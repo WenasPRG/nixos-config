@@ -60,10 +60,14 @@
     wget
     curl
     jq
+    jdk8
+    jdk17
+    jdk21
     ibus
 
     # Media
     vlc
+    obs-studio
     ffmpeg
     pavucontrol
     geogebra6
@@ -107,6 +111,7 @@
     wineWowPackages.stagingFull
 
     # Miscellaneous
+    modrinth-app
     ani-cli
     fastfetch
     ventoy
@@ -121,6 +126,7 @@
     copyq
     normcap
   ];
+
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
