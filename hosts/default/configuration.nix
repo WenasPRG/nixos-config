@@ -55,6 +55,9 @@
   environment.systemPackages = with pkgs; [
     # General utilities
     zip
+    spotify
+    spotify-cli-linux
+    mov-cli
     rsync
     tree
     wget
@@ -66,6 +69,8 @@
     ibus
 
     # Media
+    glaxnimate
+    kdePackages.kdenlive
     vlc
     obs-studio
     ffmpeg
