@@ -1,28 +1,23 @@
 {
   description = "nixos config";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    # dexed = {
-    #   url = "github:asb2m10/dexed";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
-  outputs = { self, nixpkgs, ... } @ inputs: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, ... } @ inputs: 
     let 
       system = "x86_64-linux"; 
       pkgs = nixpkgs.legacyPackages.${system}; 
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     in 
     { 
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs pkgs-unstable; };
           modules = [
             ./hosts/default/configuration.nix
             inputs.home-manager.nixosModules.default

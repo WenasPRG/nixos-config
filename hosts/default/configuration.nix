@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, pkgs-unstable , ... }:
 
 {
   imports =
@@ -48,12 +48,19 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  programs.firefox = {
+    enable = true;
+    package = pkgs-unstable.firefox-devedition;
+    nativeMessagingHosts.packages = [ pkgs-unstable.firefoxpwa ];
+  };
+
   security.polkit.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     # General utilities
+    pkgs-unstable.firefoxpwa
     zip
     spotify
     spotify-cli-linux
@@ -92,7 +99,6 @@
     gparted
     neovim
     kitty
-    firefox
     chromium
 
     # Fonts
@@ -178,9 +184,6 @@
     description = "xyfr"; 
     extraGroups = [ "networkmanager" "wheel" "libvirtd" "realtime" ]; 
     packages = with pkgs; [ 
-      vim 
-      neovim 
-      firefox
     ];
   }; 
 
