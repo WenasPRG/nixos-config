@@ -60,11 +60,11 @@
 
   environment.systemPackages = with pkgs; [
     # General utilities
+    python311
     pkgs-unstable.firefoxpwa
+    remmina
     zip
     spotify
-    spotify-cli-linux
-    mov-cli
     rsync
     tree
     wget
@@ -73,6 +73,7 @@
     jdk8
     jdk17
     jdk21
+    rpi-imager
     ibus
 
     # Media
@@ -84,7 +85,6 @@
     pavucontrol
     geogebra6
     gimp
-    davinci-resolve
 
     # Communication
     bitwarden-desktop
@@ -113,29 +113,17 @@
 
     # Development
     git
-    reaper
-    yabridge
-    yabridgectl
-    linvstmanager
     alsa-utils
     wineWowPackages.unstableFull
     wineWowPackages.stagingFull
 
     # Miscellaneous
-    modrinth-app
-    ani-cli
-    fastfetch
     ventoy
-    yacreader
-    mangal
-    calibre
     onlyoffice-bin_latest
     blueman
     bluez
     bluez-tools
     qbittorrent
-    copyq
-    normcap
   ];
 
 
