@@ -23,7 +23,6 @@
     
     extraPackages = with pkgs; [
       mesa
-      rocm-opencl-icd
       amdvlk
     ];
   };
@@ -48,23 +47,19 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  programs.firefox = {
-    enable = true;
-    package = pkgs-unstable.firefox-devedition;
-    nativeMessagingHosts.packages = [ pkgs-unstable.firefoxpwa ];
-  };
-
+ 
+ 
   security.polkit.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+
     # General utilities
-    python311
-    pkgs-unstable.firefoxpwa
-    remmina
+    pkgs-unstable.firefox-devedition
     zip
     spotify
+    spotify-cli-linux
     rsync
     tree
     wget
@@ -73,7 +68,6 @@
     jdk8
     jdk17
     jdk21
-    rpi-imager
     ibus
 
     # Media
@@ -118,6 +112,7 @@
     wineWowPackages.stagingFull
 
     # Miscellaneous
+    fastfetch
     ventoy
     onlyoffice-bin_latest
     blueman
