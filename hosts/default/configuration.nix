@@ -158,6 +158,10 @@ in
     wineWowPackages.unstableFull
     wineWowPackages.stagingFull
 
+    # Minimal C Development Setup
+    gcc
+    gnumake
+
     # Miscellaneous
     bitwarden-desktop
     ventoy
