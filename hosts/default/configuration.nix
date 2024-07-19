@@ -125,6 +125,7 @@ in
     pavucontrol
     geogebra6
     gimp
+    unstable.calibre
 
     # Development
     git
@@ -184,6 +185,8 @@ in
     epiphany
     geary
     evince
+    gnome-console
+    xterm
     totem
   ]) ++ (with pkgs.gnome; [
     gnome-music
